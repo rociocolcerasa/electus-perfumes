@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mujer | ELECTUS Perfumes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-oscuro: #004d40;
+            --dorado: #c5a059;
+            --blanco-hueso: #fdfaf5;
+            --ancho-menu: 250px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco-hueso);
+            display: flex;
+            transition: all 0.3s ease;
+        }
+
+        h1, h2, h3, summary, .nombre-perfume, .btn-toggle, .btn-comprar {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- MISMO MENÚ QUE EL INDEX --- */
+        nav {
+            width: var(--ancho-menu);
+            background-color: var(--verde-oscuro);
+            height: 100vh;
+            color: white;
+            position: fixed;
+            left: 0; top: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding-top: 20px;
+        }
+
+        nav.cerrado { left: calc(var(--ancho-menu) * -1); }
+
+        .btn-toggle {
+            position: absolute;
+            right: -40px; top: 20px;
+            background: var(--dorado);
+            color: white; border: none;
+            width: 40px; height: 40px;
+            cursor: pointer; border-radius: 0 5px 5px 0;
+        }
+
+        nav h2 { text-align: center; color: var(--dorado); border-bottom: 1px solid var(--dorado); margin: 10px 20px 30px; padding-bottom: 10px; }
+        
+        nav a { display: block; padding: 15px 25px; color: white; text-decoration: none; }
+        nav a:hover { color: var(--dorado); }
+
+        /* --- CONTENIDO DE PRODUCTOS --- */
+        main {
+            margin-left: var(--ancho-menu);
+            width: 100%;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        body.menu-cerrado main { margin-left: 0; }
+
+        .titulo-seccion { text-align: center; color: var(--verde-oscuro); margin-bottom: 40px; }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .producto-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .producto-card:hover { transform: translateY(-5px); }
+
+        .producto-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .nombre-perfume { font-size: 1.4rem; color: var(--verde-oscuro); margin: 10px 0; }
+        .precio { color: var(--dorado); font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; }
+
+        .btn-comprar {
+            background: var(--verde-oscuro);
+            color: white;
+            border: 2px solid var(--dorado);
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-comprar:hover { background: var(--dorado); }
+    </style>
+</head>
+<body id="cuerpo">
+
+    <nav id="menu">
+        <button class="btn-toggle" onclick="toggleMenu()">‹</button>
+        <h2><a href="index.html" style="color: var(--dorado); padding:0; border:none;">ELECTUS</a></h2>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="hombre.html">Hombre</a>
+        <a href="mujer.html" style="color: var(--dorado);">Mujer</a>
+        <a href="unisex.html">Unisex</a>
+        <a href="ofertas.html">✨ Ofertas</a>
+    </nav>
+
+    <main>
+        <div class="titulo-seccion">
+            <h1>Colección <span style="color:var(--dorado)">Femenina</span></h1>
+            <p>Fragancias que evocan elegancia y sofisticación.</p>
+        </div>
+
+        <div class="productos-grid">
+            <div class="producto-card">
+                <img src="https://www.lancome.com.mx/dw/image/v2/AATL_PRD/on/demandware.static/-/Sites-lancome-mx-Library/default/dw96516d13/images/plp/mobile/Fragrance_Idole_LVEB_MOBILEx2.jpg" class="producto-img">
+                <h3 class="nombre-perfume">L'Éclat d'Or</h3>
+                <p class="precio">$12.500</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+            </div>
+
+            <div class="producto-card">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="producto-img">
+                <h3 class="nombre-perfume">Rose Mystique</h3>
+                <p class="precio">$15.200</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+            </div>
+
+            <div class="producto-card">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="producto-img">
+                <h3 class="nombre-perfume">Nuit de Soie</h3>
+                <p class="precio">$11.800</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const cuerpo = document.getElementById('cuerpo');
+            const btn = document.querySelector('.btn-toggle');
+            menu.classList.toggle('cerrado');
+            cuerpo.classList.toggle('menu-cerrado');
+            btn.innerHTML = menu.classList.contains('cerrado') ? '›' : '‹';
+        }
+    </script>
+</body>
+</html>
