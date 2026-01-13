@@ -26,13 +26,13 @@
             transition: all 0.3s ease;
         }
 
-        /* Tipografía de Ofertas aplicada a todo */
-        h1, h2, h3, summary, .categoria-texto, .btn-toggle {
+        /* Tipografía elegante para todo */
+        h1, h2, h3, summary, .categoria-texto, .btn-toggle, .ofertas-link {
             font-family: 'Playfair Display', serif;
             letter-spacing: 1px;
         }
 
-        /* MENÚ RETRÁCTIL */
+        /* MENÚ LATERAL RETRÁCTIL */
         nav {
             width: var(--ancho-menu);
             background-color: var(--verde-oscuro);
@@ -46,12 +46,10 @@
             padding-top: 20px;
         }
 
-        /* Clase para cuando el menú está cerrado */
         nav.cerrado {
             left: calc(var(--ancho-menu) * -1);
         }
 
-        /* Botón para abrir/cerrar */
         .btn-toggle {
             position: absolute;
             right: -40px;
@@ -81,8 +79,6 @@
             list-style: none;
         }
 
-        details summary:hover { color: var(--dorado); }
-
         .subseccion a {
             display: block;
             padding: 10px 45px;
@@ -99,10 +95,9 @@
             color: var(--dorado);
             text-decoration: none;
             font-size: 1.2rem;
-            font-weight: bold;
         }
 
-        /* CONTENIDO PRINCIPAL ADAPTABLE */
+        /* CONTENIDO PRINCIPAL */
         main {
             margin-left: var(--ancho-menu);
             width: 100%;
@@ -111,22 +106,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
         }
 
-        /* Cuando el menú se cierra, el contenido usa todo el espacio */
         body.menu-cerrado main {
             margin-left: 0;
         }
 
         .bienvenida { text-align: center; margin-bottom: 50px; }
-        .bienvenida h1 { font-size: 3rem; color: var(--verde-oscuro); margin-bottom: 10px; }
+        .bienvenida h1 { font-size: 3rem; color: var(--verde-oscuro); }
         .dorado-text { color: var(--dorado); }
 
-        /* GRID DE CATEGORÍAS */
+        /* GRID DE CATEGORÍAS RECTANGULARES */
         .categorias-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             width: 100%;
             max-width: 1100px;
@@ -135,20 +128,22 @@
 
         .categoria-item {
             position: relative;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%; /* Círculos perfectos */
+            width: 100%;
+            max-width: 320px;
+            height: 400px; /* Altura rectangular */
+            border-radius: 20px; /* BORDES REDONDEADOS */
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            border: 4px solid var(--dorado);
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease;
         }
 
-        .categoria-item:hover { transform: scale(1.05); }
+        .categoria-item:hover {
+            transform: translateY(-10px);
+        }
 
         .categoria-fondo {
             position: absolute;
@@ -156,22 +151,24 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.6);
-            transition: 0.3s;
+            filter: brightness(0.7);
+            transition: 0.5s;
         }
 
-        .categoria-item:hover .categoria-fondo { filter: brightness(0.8); }
+        .categoria-item:hover .categoria-fondo {
+            filter: brightness(0.9) scale(1.1);
+        }
 
         .categoria-texto {
             position: relative;
             color: white;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             text-transform: uppercase;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
         @media (max-width: 768px) {
-            main { margin-left: 0; padding: 20px; }
+            main { margin-left: 0; }
             nav { left: -250px; }
             nav.activo { left: 0; }
         }
@@ -198,7 +195,7 @@
     <main>
         <section class="bienvenida">
             <h1>ELECTUS <span class="dorado-text">Fragrances</span></h1>
-            <p>La esencia del lujo en cada gota.</p>
+            <p>La elegancia capturada en una botella.</p>
         </section>
 
         <section class="categorias-grid">
@@ -228,11 +225,7 @@
             menu.classList.toggle('cerrado');
             cuerpo.classList.toggle('menu-cerrado');
             
-            if(menu.classList.contains('cerrado')) {
-                btn.innerHTML = '›';
-            } else {
-                btn.innerHTML = '‹';
-            }
+            btn.innerHTML = menu.classList.contains('cerrado') ? '›' : '‹';
         }
     </script>
 </body>
