@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Perfumes | Tienda Oficial</title>
+    <style>
+        :root {
+            --verde-oscuro: #004d40;
+            --dorado: #c5a059;
+            --blanco-hueso: #fdfaf5;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif, Arial;
+            display: flex; /* Para que el menú y el contenido estén uno al lado del otro */
+            background-color: var(--blanco-hueso);
+        }
+
+        /* Menú lateral izquierdo */
+        nav {
+            width: 250px;
+            background-color: var(--verde-oscuro);
+            height: 100vh;
+            color: white;
+            padding-top: 20px;
+            position: fixed; /* Se queda fijo al hacer scroll */
+        }
+
+        nav h2 {
+            text-align: center;
+            color: var(--dorado);
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 10px;
+            margin: 10px;
+        }
+
+        /* Estilo del menú desplegable */
+        details {
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        summary {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            list-style: none; /* Quita la flecha por defecto */
+            border-left: 4px solid transparent;
+        }
+
+        summary:hover {
+            background-color: #00695c;
+            border-left: 4px solid var(--dorado);
+        }
+
+        .subseccion {
+            display: flex;
+            flex-direction: column;
+            background-color: #00332c;
+        }
+
+        .subseccion a {
+            padding: 10px 40px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .subseccion a:hover {
+            color: var(--dorado);
+        }
+
+        .ofertas-link {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .ofertas-link:hover {
+            background-color: #00695c;
+            color: var(--dorado);
+        }
+
+        /* Contenido principal */
+        main {
+            margin-left: 250px; /* Deja espacio para el menú */
+            padding: 40px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .tarjeta-bienvenida {
+            background: white;
+            padding: 50px;
+            border: 2px solid var(--dorado);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--verde-oscuro);
+            font-size: 2.5rem;
+        }
+
+        .dorado-text {
+            color: var(--dorado);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>LUXURY</h2>
+        
+        <details>
+            <summary>☰ Perfumes</summary>
+            <div class="subseccion">
+                <a href="#hombre">Hombre</a>
+                <a href="#mujer">Mujer</a>
+                <a href="#unisex">Unisex</a>
+            </div>
+        </details>
+
+        <a href="#ofertas" class="ofertas-link">✨ Ofertas</a>
+    </nav>
+
+    <main>
+        <div class="tarjeta-bienvenida">
+            <h1>Fragancias <span class="dorado-text">Exclusivas</span></h1>
+            <p>Selecciona una categoría en el menú para explorar nuestra colección.</p>
+            <img src="https://i.pinimg.com/736x/16/ef/ab/16efab44fd2eb290f3d020b0c1efd3a9.jpg" style="width: 100px; border-radius: 50%; margin-top: 20px;" alt="Logo">
+        </div>
+    </main>
+
+</body>
+</html>
