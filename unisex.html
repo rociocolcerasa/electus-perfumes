@@ -3,154 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unisex | ELECTUS Perfumes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Unisex | ELECTUS Fragrances</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
+            --verde-menu: #0b1d19;
             --verde-oscuro: #004d40;
             --dorado: #c5a059;
             --blanco-hueso: #fdfaf5;
-            --ancho-menu: 250px;
+            --texto-menu: #8da39e;
+            --ancho-menu: 260px;
+            --gris-notas: #f0f2f1;
         }
 
         * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: var(--blanco-hueso); display: flex; transition: all 0.3s ease; }
 
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--blanco-hueso);
-            display: flex;
-            transition: all 0.3s ease;
-        }
-
-        h1, h2, h3, summary, .nombre-perfume, .btn-toggle, .btn-comprar {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* --- MISMO MENÚ QUE EL INDEX --- */
-        nav {
-            width: var(--ancho-menu);
-            background-color: var(--verde-oscuro);
-            height: 100vh;
-            color: white;
-            position: fixed;
-            left: 0; top: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            padding-top: 20px;
-        }
-
+        /* --- MENÚ LATERAL --- */
+        nav { width: var(--ancho-menu); background-color: var(--verde-menu); height: 100vh; position: fixed; left: 0; top: 0; transition: all 0.3s ease; z-index: 1000; padding-top: 50px; }
         nav.cerrado { left: calc(var(--ancho-menu) * -1); }
+        .btn-toggle { position: absolute; right: -40px; top: 25px; background: var(--dorado); color: white; border: none; width: 40px; height: 40px; cursor: pointer; border-radius: 0 5px 5px 0; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+        .logo-seccion { padding: 0 35px; margin-bottom: 60px; }
+        .logo-seccion h2 { font-family: 'Playfair Display', serif; color: var(--dorado); font-size: 2.2rem; margin: 0; letter-spacing: 5px; }
+        .logo-seccion p { color: var(--texto-menu); font-size: 0.75rem; margin: 8px 0 0 0; letter-spacing: 4px; text-transform: uppercase; }
 
-        .btn-toggle {
-            position: absolute;
-            right: -40px; top: 20px;
-            background: var(--dorado);
-            color: white; border: none;
-            width: 40px; height: 40px;
-            cursor: pointer; border-radius: 0 5px 5px 0;
-        }
+        .menu-items a { display: block; padding: 18px 35px; color: var(--texto-menu); text-decoration: none; font-size: 0.95rem; letter-spacing: 2px; position: relative; transition: 0.3s; }
+        .menu-items a:hover { color: white; }
+        .menu-items a.active { color: var(--dorado); text-decoration: underline; text-underline-offset: 10px; background-color: rgba(197, 160, 89, 0.05); }
+        .menu-items a.active::before { content: ""; position: absolute; left: 0; top: 20%; height: 60%; width: 4px; background-color: var(--dorado); }
 
-        nav h2 { text-align: center; color: var(--dorado); border-bottom: 1px solid var(--dorado); margin: 10px 20px 30px; padding-bottom: 10px; }
-        
-        nav a { display: block; padding: 15px 25px; color: white; text-decoration: none; }
-        nav a:hover { color: var(--dorado); }
-
-        /* --- CONTENIDO DE PRODUCTOS --- */
-        main {
-            margin-left: var(--ancho-menu);
-            width: 100%;
-            padding: 40px;
-            transition: all 0.3s ease;
-        }
-
+        /* --- CONTENIDO PRINCIPAL --- */
+        main { margin-left: var(--ancho-menu); width: 100%; padding: 40px; transition: all 0.3s ease; }
         body.menu-cerrado main { margin-left: 0; }
 
-        .titulo-seccion { text-align: center; color: var(--verde-oscuro); margin-bottom: 40px; }
+        .cabecera { text-align: center; margin-bottom: 60px; }
+        .cabecera h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--verde-oscuro); margin: 0; }
+        .cabecera h1 span { color: var(--dorado); }
+        .cabecera p { color: #6a7f7a; font-size: 1.1rem; margin-top: 15px; letter-spacing: 1px; }
+        .linea-dorada { width: 100px; height: 2px; background: var(--dorado); margin: 25px auto; opacity: 0.6; }
 
-        .productos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* --- GRID DE PRODUCTOS --- */
+        .productos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; border-radius: 20px; padding: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); }
 
-        .producto-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
+        .img-container { position: relative; width: 100%; height: 280px; border-radius: 15px; overflow: hidden; background: #f9f9f9; margin-bottom: 20px; }
+        .img-container::before { content: ""; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border: 1px solid var(--dorado); border-radius: 10px; z-index: 2; pointer-events: none; opacity: 0.5; transition: 0.3s; }
+        .card:hover .img-container::before { opacity: 1; top: 10px; left: 10px; right: 10px; bottom: 10px; }
+        .producto-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover .producto-img { transform: scale(1.1); filter: blur(2px) brightness(0.7); }
 
-        .producto-card:hover { transform: translateY(-5px); }
+        .btn-detalles { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; opacity: 0; transition: 0.3s; z-index: 3; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; border: none; font-family: 'Montserrat', sans-serif; }
+        .card:hover .btn-detalles { opacity: 1; }
 
-        .producto-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
+        .tag { position: absolute; top: 15px; right: 15px; background: rgba(0, 77, 64, 0.8); color: #a5d6a7; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; z-index: 4; }
+        .nombre { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #333; margin: 10px 0; }
+        .medida { color: #888; font-size: 0.8rem; margin-bottom: 5px; }
+        .precio { color: var(--dorado); font-weight: 600; font-size: 1.3rem; margin-bottom: 20px; }
+        .btn-agregar { width: 100%; background: var(--dorado); color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .btn-agregar:hover { background: #b08d4a; }
 
-        .nombre-perfume { font-size: 1.4rem; color: var(--verde-oscuro); margin: 10px 0; }
-        .precio { color: var(--dorado); font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; }
+        /* --- ESTILOS DEL MODAL --- */
+        .modal-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; padding: 20px; }
+        .modal-container.show { opacity: 1; pointer-events: all; }
+        .modal-content { background: var(--blanco-hueso); width: 100%; max-width: 900px; border-radius: 25px; overflow: hidden; display: flex; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 1.8rem; cursor: pointer; z-index: 10; color: #333; }
+        .modal-img-side { width: 45%; }
+        .modal-img-side img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-info-side { width: 55%; padding: 40px; overflow-y: auto; max-height: 85vh; }
+        .modal-tag-top { color: #888; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        .modal-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--verde-oscuro); margin: 0 0 15px; }
+        .modal-desc { color: #666; line-height: 1.6; margin-bottom: 25px; font-size: 0.95rem; }
 
-        .btn-comprar {
-            background: var(--verde-oscuro);
-            color: white;
-            border: 2px solid var(--dorado);
-            padding: 10px 25px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
+        .momentos-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--verde-oscuro); margin: 20px 0 15px; display: flex; align-items: center; gap: 10px; }
+        .momentos-container { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .momento-item { background: white; border: 1px solid #ddd; padding: 8px 15px; border-radius: 30px; font-size: 0.85rem; color: #444; display: flex; align-items: center; gap: 8px; font-weight: 500; }
+        /* Iconos en Verde */
+        .momento-item i { color: var(--verde-oscuro); font-size: 1.1rem; }
 
-        .btn-comprar:hover { background: var(--dorado); }
+        .notas-section-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--verde-oscuro); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .nota-card { background: var(--gris-notas); padding: 15px 20px; border-radius: 15px; margin-bottom: 12px; }
+        .nota-card h4 { margin: 0 0 5px; font-size: 0.75rem; color: #8da39e; text-transform: uppercase; letter-spacing: 1px; }
+        .nota-card p { margin: 0; color: #333; font-weight: 500; }
+
+        @media (max-width: 768px) { .modal-content { flex-direction: column; } .modal-img-side, .modal-info-side { width: 100%; } .modal-img-side { height: 250px; } }
     </style>
 </head>
 <body id="cuerpo">
 
     <nav id="menu">
         <button class="btn-toggle" onclick="toggleMenu()">‹</button>
-        <h2><a href="index.html" style="color: var(--dorado); padding:0; border:none;">ELECTUS</a></h2>
-        <a href="index.html"> Inicio</a>
-        <a href="hombre.html">Hombre</a>
-        <a href="mujer.html">Mujer</a>
-        <a href="unisex.html"style="color: var(--dorado);">Unisex</a>
-        <a href="ofertas.html"> Ofertas</a>
+        <div class="logo-seccion">
+            <a href="index.html" style="text-decoration:none;"><h2>ELECTUS</h2></a>
+            <p>Fragrances</p>
+        </div>
+        <div class="menu-items">
+            <a href="index.html">INICIO</a>
+            <a href="hombre.html">HOMBRE</a>
+            <a href="mujer.html">MUJER</a>
+            <a href="unisex.html" class="active">UNISEX</a>
+            <a href="ofertas.html">OFERTAS</a>
+        </div>
     </nav>
 
     <main>
-        <div class="titulo-seccion">
-            <h1>Colección <span style="color:var(--dorado)">Unisex</span></h1>
-            <p>Fragancias que evocan elegancia y sofisticación.</p>
-        </div>
+        <section class="cabecera">
+            <h1>Esencias <span>Unisex</span></h1>
+            <p>Fragancias equilibradas que trascienden géneros.</p>
+            <div class="linea-dorada"></div>
+        </section>
 
-        <div class="productos-grid">
-            <div class="producto-card">
-                <img src="https://cdn.pedix.app/rry8Zb4p9JBH2k9g2aHJ/products/mr2FEHQWbhV2lQWIFdnqw.png?size=2000x2000" class="producto-img">
-                <h3 class="nombre-perfume">Tropical Vibe (100 ml)</h3>
-                <p class="precio">$80.000</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+        <section class="productos-grid">
+            <div class="card">
+                <span class="tag">Intensa</span>
+                <div class="img-container">
+                    <img src="https://d3cdlnm7te7ky2.cloudfront.net/media/catalog/product/cache/1f1b8d9a1b49678555bea203c2f52e39/1/4/14279-ck_one_edt_100ml_b_1.jpg" class="producto-img">
+                    <button class="btn-detalles" onclick="openModal('modal-bal')">👁 Ver detalles</button>
+                </div>
+                <div class="nombre">CK One</div>
+                <div class="medida">100 ML</div>
+                <div class="precio">$195.000</div>
+                <button class="btn-agregar">🛒 Agregar</button>
             </div>
 
-            <div class="producto-card">
-                <img src="https://www.anikashop.com.ar/product_images/z/824/Perfume-Lattafa-Qaed-Al-Fursan-Unlimited-EDP-U-100-ml__26811_zoom.jpg" class="producto-img">
-                <h3 class="nombre-perfume">Qaed Al Fursan Unlimited (100 ml)</h3>
-                <p class="precio">$45.000</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+            <div class="card">
+                <span class="tag">Intensa</span>
+                <div class="img-container">
+                    <img src="https://juleriaque.vtexassets.com/unsafe/768x0/center/middle/https%3A%2F%2Fjuleriaque.vtexassets.com%2Farquivos%2Fids%2F263928%2F1008419-1.jpg%3Fv%3D638949413892700000" class="producto-img">
+                    <button class="btn-detalles" onclick="openModal('modal-silver')">👁 Ver detalles</button>
+                </div>
+                <div class="nombre">Acqua di Parma</div>
+                <div class="medida">100 ML</div>
+                <div class="precio">$280.000</div>
+                <button class="btn-agregar">🛒 Agregar</button>
             </div>
 
-            <div class="producto-card">
-                <img src="https://nextcell.com.ar/wp-content/uploads/2025/09/arabe-34-a89ac42172cea9437f17328112324973-1024-1024.png" class="producto-img">
-                <h3 class="nombre-perfume">Hayaati Gold Elixir (100 ml)</h3>
-                <p class="precio">$26.000</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+            <div class="card">
+                <span class="tag" style="background: rgba(197, 160, 89, 0.8); color: white;">Moderada</span>
+                <div class="img-container">
+                    <img src="https://juleriaque.vtexassets.com/unsafe/768x0/center/middle/https%3A%2F%2Fjuleriaque.vtexassets.com%2Farquivos%2Fids%2F269512%2F1009091.jpg%3Fv%3D639021283174770000" class="producto-img">
+                    <button class="btn-detalles" onclick="openModal('modal-tobacco')">👁 Ver detalles</button>
+                </div>
+                <div class="nombre">Eau de Soleil Blanc</div>
+                <div class="medida">100 ML</div>
+                <div class="precio">$310.000</div>
+                <button class="btn-agregar">🛒 Agregar</button>
             </div>
-        </div>
+        </section>
     </main>
+
+    <div class="modal-container" id="modal-bal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bal')"><i class="ri-close-line"></i></button>
+            <div class="modal-img-side"><img src="https://d3cdlnm7te7ky2.cloudfront.net/media/catalog/product/cache/1f1b8d9a1b49678555bea203c2f52e39/1/4/14279-ck_one_edt_100ml_b_1.jpg"></div>
+            <div class="modal-info-side">
+                <div class="modal-tag-top">UNISEX</div>
+                <h2 class="modal-title">CK One</h2>
+                <p class="modal-desc">Un hito en la perfumería. Una fragancia fresca, limpia y revolucionaria que define el espíritu de libertad y unidad.</p>
+                
+                <h3 class="momentos-title"><i class="ri-calendar-check-line"></i> Momentos Recomendados</h3>
+                <div class="momentos-container">
+                    <div class="momento-item"><i class="ri-sun-line"></i> Día / Todo momento</div>
+                    <div class="momento-item"><i class="ri-leaf-line"></i> Primavera / Verano</div>
+                </div>
+
+                <h3 class="notas-section-title"><i class="ri-drop-line"></i> Notas de Fragancia</h3>
+                <div class="nota-card"><h4>Notas de Salida</h4><p>Limón, Bergamota, Notas verdes, Piña</p></div>
+                <div class="nota-card"><h4>Notas de Corazón</h4><p>Lirio de los valles, Jazmín, Violeta</p></div>
+                <div class="nota-card"><h4>Notas de Fondo</h4><p>Almizcle, Ámbar, Sándalo, Cedro</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-container" id="modal-silver">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-silver')"><i class="ri-close-line"></i></button>
+            <div class="modal-img-side"><img src="https://juleriaque.vtexassets.com/unsafe/768x0/center/middle/https%3A%2F%2Fjuleriaque.vtexassets.com%2Farquivos%2Fids%2F263928%2F1008419-1.jpg%3Fv%3D638949413892700000"></div>
+            <div class="modal-info-side">
+                <div class="modal-tag-top">UNISEX</div>
+                <h2 class="modal-title">Acqua di Parma</h2>
+                <p class="modal-desc">La esencia del estilo italiano. Una fragancia atemporal, luminosa y elegante que celebra los cítricos más finos.</p>
+                
+                <h3 class="momentos-title"><i class="ri-calendar-check-line"></i> Momentos Recomendados</h3>
+                <div class="momentos-container">
+                    <div class="momento-item"><i class="ri-sun-line"></i> Mañana / Energía</div>
+                    <div class="momento-item"><i class="ri-windy-line"></i> Verano / Primavera</div>
+                </div>
+
+                <h3 class="notas-section-title"><i class="ri-drop-line"></i> Notas de Fragancia</h3>
+                <div class="nota-card"><h4>Notas de Salida</h4><p>Limón siciliano, Naranja dulce, Bergamota</p></div>
+                <div class="nota-card"><h4>Notas de Corazón</h4><p>Lavanda, Rosa, Romero</p></div>
+                <div class="nota-card"><h4>Notas de Fondo</h4><p>Vetiver, Sándalo, Pachulí</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-container" id="modal-tobacco">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-tobacco')"><i class="ri-close-line"></i></button>
+            <div class="modal-img-side"><img src="https://juleriaque.vtexassets.com/unsafe/768x0/center/middle/https%3A%2F%2Fjuleriaque.vtexassets.com%2Farquivos%2Fids%2F269512%2F1009091.jpg%3Fv%3D639021283174770000"></div>
+            <div class="modal-info-side">
+                <div class="modal-tag-top">UNISEX</div>
+                <h2 class="modal-title">Eau de Soleil Blanc</h2>
+                <p class="modal-desc">Una versión solar y brillante. Captura el aroma del verano eterno, el coco y las flores exóticas bajo el sol.</p>
+                
+                <h3 class="momentos-title"><i class="ri-calendar-check-line"></i> Momentos Recomendados</h3>
+                <div class="momentos-container">
+                    <div class="momento-item"><i class="ri-sun-line"></i> Día / Vacaciones</div>
+                    <div class="momento-item"><i class="ri-temp-hot-line"></i> Verano Intenso</div>
+                </div>
+
+                <h3 class="notas-section-title"><i class="ri-drop-line"></i> Notas de Fragancia</h3>
+                <div class="nota-card"><h4>Notas de Salida</h4><p>Pistacho, Bergamota, Cardamomo</p></div>
+                <div class="nota-card"><h4>Notas de Corazón</h4><p>Ylang-ylang, Jazmín, Flor de azahar</p></div>
+                <div class="nota-card"><h4>Notas de Fondo</h4><p>Coco, Ámbar, Vainilla</p></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const cuerpo = document.getElementById('cuerpo');
+            const btn = document.querySelector('.btn-toggle');
+            menu.classList.toggle('cerrado');
+            cuerpo.classList.toggle('menu-cerrado');
+            btn.innerHTML = menu.classList.contains('cerrado') ? '›' : '‹';
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); document.body.style.overflow = 'auto'; }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-container')) {
+                event.target.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
