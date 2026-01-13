@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Perfumes | Tienda Oficial</title>
+    <title>ELECTUS Perfumes | Tienda Oficial</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --verde-oscuro: #004d40;
             --dorado: #c5a059;
             --blanco-hueso: #fdfaf5;
+            --verde-claro-hover: #00695c;
         }
 
         body {
             margin: 0;
-            font-family: 'Playfair Display', serif, Arial;
+            font-family: 'Montserrat', sans-serif; /* Letra moderna y fina para el cuerpo */
             display: flex; /* Para que el menú y el contenido estén uno al lado del otro */
             background-color: var(--blanco-hueso);
+            color: #2c3e50;
+            min-height: 100vh;
+        }
+
+        /* Títulos y elementos destacados con la fuente elegante */
+        h1, h2, summary, .categoria-texto {
+            font-family: 'Playfair Display', serif; /* Letra de revista de moda */
+            letter-spacing: 1px;
+            color: var(--verde-oscuro); /* Color por defecto, puede ser cambiado */
         }
 
         /* Menú lateral izquierdo */
@@ -25,7 +38,9 @@
             height: 100vh;
             color: white;
             padding-top: 20px;
-            position: fixed; /* Se queda fijo al hacer scroll */
+            position: fixed;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 100; /* Asegura que esté por encima de otros elementos */
         }
 
         nav h2 {
@@ -33,42 +48,50 @@
             color: var(--dorado);
             border-bottom: 1px solid var(--dorado);
             padding-bottom: 10px;
-            margin: 10px;
+            margin: 10px 20px 30px; /* Margen para separar del menú */
+            font-size: 1.8rem;
         }
 
         /* Estilo del menú desplegable */
         details {
-            margin: 20px 0;
+            margin: 10px 0;
             cursor: pointer;
         }
 
         summary {
             padding: 10px 20px;
             font-size: 1.2rem;
-            list-style: none; /* Quita la flecha por defecto */
+            list-style: none;
             border-left: 4px solid transparent;
+            display: flex; /* Para centrar el texto verticalmente */
+            align-items: center;
+            color: white; /* Color blanco para el texto de Perfumes */
         }
 
         summary:hover {
-            background-color: #00695c;
+            background-color: var(--verde-claro-hover);
             border-left: 4px solid var(--dorado);
+            color: var(--dorado); /* El texto de Perfumes se pone dorado al pasar el mouse */
         }
 
         .subseccion {
             display: flex;
             flex-direction: column;
             background-color: #00332c;
+            padding-bottom: 10px; /* Espacio al final de la subsección */
         }
 
         .subseccion a {
-            padding: 10px 40px;
+            padding: 8px 40px;
             color: white;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
         .subseccion a:hover {
             color: var(--dorado);
+            background-color: #004d40; /* Un verde un poco más claro al pasar el mouse */
         }
 
         .ofertas-link {
@@ -77,62 +100,153 @@
             color: white;
             text-decoration: none;
             font-size: 1.2rem;
+            border-left: 4px solid transparent;
+            margin-top: 20px;
         }
 
         .ofertas-link:hover {
-            background-color: #00695c;
+            background-color: var(--verde-claro-hover);
             color: var(--dorado);
+            border-left: 4px solid var(--dorado);
         }
 
         /* Contenido principal */
         main {
-            margin-left: 250px; /* Deja espacio para el menú */
+            margin-left: 250px; /* Deja espacio para el menú lateral */
             padding: 40px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bienvenida {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .bienvenida h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: var(--verde-oscuro);
+        }
+
+        .bienvenida p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Estilos para las tarjetas de categorías (los 3 círculos/rectángulos) */
+        .categorias-grid {
+            display: flex;
+            gap: 30px; /* Espacio entre las tarjetas */
+            flex-wrap: wrap; /* Para que se adapten en pantallas pequeñas */
+            justify-content: center;
+            max-width: 1200px;
+        }
+
+        .categoria-item {
+            position: relative;
+            width: 250px; /* Ancho de la tarjeta */
+            height: 250px; /* Alto para que sea circular o cuadrada */
+            border-radius: 15px; /* Bordes redondeados */
+            overflow: hidden; /* Para que la imagen no se salga */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; /* Quita el subrayado del enlace */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
-        .tarjeta-bienvenida {
-            background: white;
-            padding: 50px;
-            border: 2px solid var(--dorado);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .categoria-item:hover {
+            transform: translateY(-10px); /* Efecto flotante al pasar el mouse */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
 
-        h1 {
-            color: var(--verde-oscuro);
-            font-size: 2.5rem;
+        .categoria-fondo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover; /* La imagen cubre todo el fondo */
+            background-position: center; /* Centra la imagen */
+            filter: brightness(0.7); /* Oscurece un poco la imagen para que el texto resalte */
+            transition: filter 0.3s ease;
         }
 
-        .dorado-text {
-            color: var(--dorado);
+        .categoria-item:hover .categoria-fondo {
+            filter: brightness(0.9); /* Se aclara al pasar el mouse */
         }
+
+        .categoria-texto {
+            position: relative; /* Para que el texto esté sobre la imagen */
+            z-index: 1; /* Asegura que el texto esté por encima del fondo */
+            color: white; /* Color del texto */
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para que se lea mejor */
+            text-transform: uppercase;
+        }
+
+        /* Estilos para la imagen de bienvenida */
+        .logo-bienvenida {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 20px;
+            border: 3px solid var(--dorado);
+        }
+
     </style>
 </head>
 <body>
 
     <nav>
-        <h2>LUXURY</h2>
+        <h2><span class="dorado-text">ELECTUS</span> PERFUMES</h2>
         
-        <details>
-            <summary>☰ Perfumes</summary>
+        <details open> <summary>☰ Perfumes</summary>
             <div class="subseccion">
-                <a href="#hombre">Hombre</a>
-                <a href="#mujer">Mujer</a>
-                <a href="#unisex">Unisex</a>
+                <a href="hombre.html">Hombre</a>
+                <a href="mujer.html">Mujer</a>
+                <a href="unisex.html">Unisex</a>
             </div>
         </details>
 
-        <a href="#ofertas" class="ofertas-link">✨ Ofertas</a>
+        <a href="ofertas.html" class="ofertas-link">✨ Ofertas</a>
     </nav>
 
     <main>
-        <div class="tarjeta-bienvenida">
-            <h1>Fragancias <span class="dorado-text">Exclusivas</span></h1>
-            <p>Selecciona una categoría en el menú para explorar nuestra colección.</p>
-            <img src="https://i.pinimg.com/736x/16/ef/ab/16efab44fd2eb290f3d020b0c1efd3a9.jpg" style="width: 100px; border-radius: 50%; margin-top: 20px;" alt="Logo">
-        </div>
+        <section class="bienvenida">
+            <h1>Descubre tu <span class="dorado-text">Esencia</span></h1>
+            <p>Explora nuestra colección exclusiva de fragancias que definen tu estilo y personalidad. Encuentra el perfume perfecto para cada ocasión.</p>
+            <img src="https://i.pinimg.com/736x/16/ef/ab/16efab44fd2eb290f3d020b0c1efd3a9.jpg" class="logo-bienvenida" alt="Logo Perfume">
+        </section>
+
+        <section class="categorias-grid">
+            
+            <a href="hombre.html" class="categoria-item">
+                <div class="categoria-fondo" style="background-image: url('https://media.gq.com.mx/photos/5f03717b85180fb06783509c/16:9/w_1920,c_limit/Cover.jpg');"></div>
+                <span class="categoria-texto">Hombre</span>
+            </a>
+
+            <a href="mujer.html" class="categoria-item">
+                <div class="categoria-fondo" style="background-image: url('https://www.lancome.com.mx/dw/image/v2/AATL_PRD/on/demandware.static/-/Sites-lancome-mx-Library/default/dw96516d13/images/plp/mobile/Fragrance_Idole_LVEB_MOBILEx2.jpg?sw=430&sh=280&sm=cut&q=70');"></div>
+                <span class="categoria-texto">Mujer</span>
+            </a>
+
+            <a href="unisex.html" class="categoria-item">
+                <div class="categoria-fondo" style="background-image: url('https://cdn-azure.notinoimg.com/blog/gallery/blog_all/es-pt/nove-unisex-parfemy_714x350-px.jpg');"></div>
+                <span class="categoria-texto">Unisex</span>
+            </a>
+
+        </section>
     </main>
 
 </body>
